@@ -24,27 +24,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-    <script>
-        // JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
+    
+    <script src="/javascripts/validateForms.js"></script>
 
-            // Find all <form> tags on the webpage that have the class needs-validation
-            const forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            Array.from(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated');
-                    }, false);
-                })
-        })()
-    </script>
 </body>
 
 </html>
