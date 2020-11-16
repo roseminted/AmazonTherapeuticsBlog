@@ -1,0 +1,67 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="col-8 offset-2 form-group">
+    <div class="header text-center">
+        <h1>Edit Your Post</h1>
+    </div>
+    <form class="editPostForm mb-5 needs-validation" action="/blogposts/<%=blogpost._id%>?_method=PUT" method="POST"
+        novalidate>
+        <!-- <div class="row">
+            <div class="col-sm-2">
+                <label for="fullname">Name</label>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="blogpost[firstName]" id="fullname"
+                    aria-describedby="firstnamehelpblock" required>
+                <small id="firstnamehelpblock" class="form-text text-muted mb-3">First Name</small>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="blogpost[lastName]" id="fullname"
+                    aria-describedby="lastnamehelpblock" required>
+                <small id="lastnamehelpblock" class="form-text text-muted mb-3">Last Name</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="emailaddress">Email</label>
+            </div>
+            <div class="col">
+                <input type="email" class="form-control" id="emailaddress" name="blogpost[email]"
+                    aria-describedby="emailhelpblock" required>
+                <small id="emailhelpblock" class="form-text text-muted mb-3">example@example.com</small>
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="postTitle">Title</label>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="blogpost[title]" id="postTitle"
+                    value="<%= blogpost.title %>" aria-describedby="titlehelpblock" required>
+                <small id="titlehelpblock" class="form-text text-muted mb-3">Blog Post Title</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="postImage">Image</label>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="blogpost[image]" id="postTitle"
+                    value="<%= blogpost.image %>" aria-describedby="imagehelpblock" required>
+                <small id="imagehelpblock" class="form-text text-muted mb-3">Link to Image</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="postBody">Text</label>
+            </div>
+            <div class="col">
+                <textarea class="form-control" name="blogpost[postText]" id="postBody"
+                    required><%= blogpost.postText %></textarea>
+                <small id="textareahelpblock" class="form-text text-muted mb-3">Blog Post Text</small>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
+    </form>
+    <a href="/blogposts/<%= blogpost._id %>">Return to <%= blogpost.title %></a>
+</div>
