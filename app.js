@@ -4,24 +4,28 @@ const express = require('express');
 const path = require('path');
 // save express to app variable
 const app = express();
-// require mongoose
 const mongoose = require('mongoose');
-// require ejs-mate
 const ejsMate = require('ejs-mate');
-// require express session
 const session = require('express-session')
 // require joi schemas for validations
 const { blogpostSchema } = require('./schemas.js');
+const flash = require('connect-flash');
 // require my ExpressError handler
 const ExpressError = require('./utilities/ExpressError');
-// require error utilities
+// require error catchAsync error handler
 const catchAsync = require('./utilities/catchAsync');
 // require methodoverride for PUT & DELETE requests
 const methodOverride = require('method-override');
+// require passport and passport-local strategy
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+// insert User model
+const User = require('./models/user');
 // insert BlogPost model
 const BlogPost = require('./models/blogpost');
-// require blogposts routes
-const blogposts = require('./routes/blogposts');
+// require blogposts & user routes
+const blogpostsRoutes = require('./routes/blogposts');
+const usersRoutes = require('./routes/users');
 
 //APP CONFIG
 // configure mongoose
@@ -64,19 +68,34 @@ const sessionConfig = {
     }
 }
 
-app.use(session(sessionConfig))
+app.use(session(sessionConfig));
+app.use(flash());
 
-app.use('/blogposts', blogposts)
+// configure passport
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-// change to landing page??
-// app.get('/', (req, res) => {
-//     res.render('landing');
-// });
+// global middleware for every template
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
 
+// blogposts route handler
+app.use('/', usersRoutes);
+app.use('/blogposts', blogpostsRoutes);
+
+app.get('/', (req, res) => {
+    res.render('landing');
+});
 app.get('/about', (req, res) => {
     res.render('about');
 });
-
 app.get('/contact', (req, res) => {
     res.render('contact');
 });
@@ -85,7 +104,6 @@ app.get('/contact', (req, res) => {
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Note Found', 404))
 });
-
 // generic error handler
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;

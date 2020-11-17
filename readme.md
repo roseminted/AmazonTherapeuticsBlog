@@ -1,5 +1,5 @@
 # AmazonTheraputicsBlog
-### Blog site about the Amazon rainforest's holistic medicines
+Blog about Amazon's Natural Medicines
 
 ## Requirements
 1. NodeJS
@@ -51,6 +51,20 @@ Install and require Express Session
 Configure session
 Give cookie expiration and max age
 
+## Adding Flash
+Install Flash: npm i connect-flash
+Require Flash and use
+Create flash message template in partials folder
+Insert flash message into boilerplate
+
+## Add Authentication
+Install Passport, Passport-Local, & Passport-Local-Mongoose
+Create user file in models and create user schema
+Configure passports in app.js
+Create user.js file in routes folder
+Create register routes and register form page
+Create login routes and login form page
+Create middelware to check if a user is logged in to access the create new an edit blogposts
 
 
 
