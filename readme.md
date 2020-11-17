@@ -75,6 +75,9 @@ Update edit & delete buttons to show if blogpost belongs to current user
 Create middelware to check if post belongs to the current user
 Move blogpost middlware to middleware file and export
 
+## Refactor routes
+Add controller folder and refactor routes
+
 
 
 

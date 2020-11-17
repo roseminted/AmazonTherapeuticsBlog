@@ -7,13 +7,9 @@ const app = express();
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const session = require('express-session')
-// require joi schemas for validations
-const { blogpostSchema } = require('./schemas.js');
 const flash = require('connect-flash');
 // require my ExpressError handler
 const ExpressError = require('./utilities/ExpressError');
-// require error catchAsync error handler
-const catchAsync = require('./utilities/catchAsync');
 // require methodoverride for PUT & DELETE requests
 const methodOverride = require('method-override');
 // require passport and passport-local strategy
@@ -21,8 +17,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 // insert User model
 const User = require('./models/user');
-// insert BlogPost model
-const BlogPost = require('./models/blogpost');
 // require blogposts & user routes
 const blogpostsRoutes = require('./routes/blogposts');
 const usersRoutes = require('./routes/users');
