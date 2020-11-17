@@ -26,6 +26,7 @@ const seedDB = async () => {
     for (let i = 0; i < 25; i++) {
         const blogpost = new BlogPost({
             title: `${sample(plantNames)} ${sample(descriptors)}`,
+            author: '5fb34898a99b101aebb009d0',
             image: 'https://source.unsplash.com/collection/390111',
             postText: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Ullam repudiandae quae recusandae sequi quia rem corporis quisquam, repellat alias fugiat veritatis consequuntur dolore tempore saepe quas accusantium tempora id natus.'
         })

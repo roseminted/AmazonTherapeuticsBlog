@@ -8,13 +8,17 @@
                 <h5 class="card-title"><%= blogpost.title %></h5>
                 <p class="card-text"><%= blogpost.postText %></p>
             </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Submitted By: <%= blogpost.author.username %></li>
+            </ul>
+            <% if(currentUser && blogpost.author.equals(currentUser._id)) { %> 
             <div class="card-body">
                 <a class="card-link btn btn-info" href="/blogposts/<%= blogpost._id %>/edit">Edit</a>
                 <form class="d-inline" action="/blogposts/<%= blogpost._id %>/?_method=DELETE" method="POST">
                     <button class="btn btn-warning">Delete</button>
                 </form>
             </div>
-
+            <% } %> 
             <div class="card-footer text-muted">
                 2 days ago
             </div>

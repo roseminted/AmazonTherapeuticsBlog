@@ -66,6 +66,16 @@ Create register routes and register form page
 Create login routes and login form page
 Create middelware to check if a user is logged in to access the create new an edit blogposts
 
+## Authorization
+Add author to blogpost model
+Update show page
+Populate author
+Update show page to show author
+Update edit & delete buttons to show if blogpost belongs to current user
+Create middelware to check if post belongs to the current user
+Move blogpost middlware to middleware file and export
+
+
 
 
 

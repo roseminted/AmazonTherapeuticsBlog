@@ -7,7 +7,11 @@ const Schema = mongoose.Schema;
 const BlogPostSchema = new Schema({
     title: String,
     image: String,
-    postText: String
+    postText: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 });
 
 //Export function to create "BlogPost" model class

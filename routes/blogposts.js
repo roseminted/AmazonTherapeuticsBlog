@@ -1,22 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const catchAsync = require('../utilities/catchAsync');
-const { isLoggedIn } = require('../middleware')
-// require joi schemas for validations
-const { blogpostSchema } = require('../schemas.js');
-const ExpressError = require('../utilities/ExpressError');
+const { isLoggedIn, validateBlogpost, isAuthor } = require('../middleware')
 const BlogPost = require('../models/blogpost');
-
-// joi checking for correct inputs for server-side validations for blogposts
-const validateBlogpost = (req, res, next) => {
-    const { error } = blogpostSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new ExpressError(msg, 400)
-    } else {
-        next();
-    }
-}
 
 // index page
 router.get('/', catchAsync(async (req, res) => {
@@ -37,6 +23,8 @@ router.post('/', validateBlogpost, isLoggedIn, catchAsync(async (req, res, next)
     // if (!req.body.blogpost) throw new ExpressError('Invalid Blogpost Data', 400);
     // get info from form and save it to blogpost variable
     const blogpost = new BlogPost(req.body.blogpost);
+    // save author to new blogpost
+    blogpost.author = req.user._id;
     // save the info to the database
     await blogpost.save();
     // flash success message
@@ -48,7 +36,7 @@ router.post('/', validateBlogpost, isLoggedIn, catchAsync(async (req, res, next)
 // render blogpost show page
 router.get('/:id', catchAsync(async (req, res) => {
     // find blogpost by id and save to blogpost variable
-    const blogpost = await BlogPost.findById(req.params.id);
+    const blogpost = await BlogPost.findById(req.params.id).populate('author');
     // if error in finding blogpost, handle error and display message
     if (!blogpost) {
         req.flash('error', 'Cannot find that blogpost');
@@ -59,7 +47,7 @@ router.get('/:id', catchAsync(async (req, res) => {
 }));
 
 // edit blogpost form
-router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
+router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const blogpost = await BlogPost.findById(req.params.id);
     // if error in finding blogpost, handle error and display message
     if (!blogpost) {
@@ -70,7 +58,7 @@ router.get('/:id/edit', isLoggedIn, catchAsync(async (req, res) => {
 }));
 
 // edit blogpost logic
-router.put('/:id', validateBlogpost, isLoggedIn, catchAsync(async (req, res) => {
+router.put('/:id', isLoggedIn, isAuthor, validateBlogpost, catchAsync(async (req, res) => {
     // get blogpost id object from req.params with de-structuring {}
     const { id } = req.params;
     // spread operator (...) to spread id object and req.body.blogpost object into the blogpost object
@@ -81,7 +69,7 @@ router.put('/:id', validateBlogpost, isLoggedIn, catchAsync(async (req, res) => 
 }));
 
 // delete blogpost
-router.delete('/:id', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/:id', isLoggedIn, isAuthor, catchAsync(async (req, res) => {
     const { id } = req.params;
     await BlogPost.findByIdAndDelete(id);
     // flash success message

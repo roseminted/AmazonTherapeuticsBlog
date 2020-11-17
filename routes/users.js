@@ -4,8 +4,7 @@ const passport = require('passport');
 // require error catchAsync error handler
 const catchAsync = require('../utilities/catchAsync');
 const User = require('../models/user');
-const { route } = require('./blogposts');
-const { isLoggedIn } = require('../middleware');
+
 
 router.get('/register', (req, res) => {
     res.render('users/register')
@@ -33,7 +32,7 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
     req.flash('success', 'Welcome Back');
-    const redirectUrl = req.session.returnTo || '/campgrounds';
+    const redirectUrl = req.session.returnTo || '/blogposts';
     res.redirect(redirectUrl);
 })
 
