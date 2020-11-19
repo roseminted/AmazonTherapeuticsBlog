@@ -2,6 +2,8 @@
 (function () {
     'use strict';
 
+    bsCustomFileInput.init()
+
     // Find all <form> tags on the webpage that have the class needs-validation
     const forms = document.getElementsByClassName('needs-validation');
     // Loop over them and prevent submission

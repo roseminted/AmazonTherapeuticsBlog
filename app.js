@@ -1,8 +1,10 @@
-// require express
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+
 const express = require('express');
 // help with path manipulation, comes with node.js
 const path = require('path');
-// save express to app variable
 const app = express();
 const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');

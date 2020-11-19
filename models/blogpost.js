@@ -3,10 +3,19 @@ const mongoose = require('mongoose');
 // save mongoose.Schema to Schema
 const Schema = mongoose.Schema;
 
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+});
+
+ImageSchema.virtual('thumbnail').get(function () {
+    return this.url.replace('/upload', '/upload/w_200');
+});
+
 // blog post model
 const BlogPostSchema = new Schema({
     title: String,
-    image: String,
+    images: [ImageSchema],
     postText: String,
     author: {
         type: Schema.Types.ObjectId,

@@ -1,4 +1,5 @@
 const BlogPost = require('../models/blogpost');
+const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
     // find all blogposts and save to blogposts variable
@@ -18,8 +19,12 @@ module.exports.createBlogpost = async (req, res, next) => {
     const blogpost = new BlogPost(req.body.blogpost);
     // save author to new blogpost
     blogpost.author = req.user._id;
+    // map over files array, pull out path and filename into an object and save to new array
+    blogpost.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     // save the info to the database
     await blogpost.save();
+    // check if images were saved properly on the blogpost
+    console.log(blogpost);
     // flash success message
     req.flash('success', 'Sucessfully created a new blogpost!');
     // redirect to the new blogposts show page
@@ -51,8 +56,20 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.editBlogpost = async (req, res) => {
     // get blogpost id object from req.params with de-structuring {}
     const { id } = req.params;
+    // check the data from the form
+    // console.log(req.body);
     // spread operator (...) to spread id object and req.body.blogpost object into the blogpost object
     const blogpost = await BlogPost.findByIdAndUpdate(id, { ...req.body.blogpost });
+    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    blogpost.images.push(...imgs);
+    await blogpost.save();
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+        await blogpost.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+        console.log(blogpost);
+    }
     // flash success message
     req.flash('success', 'Sucessfully updated your blogpost!');
     res.redirect(`/blogposts/${blogpost._id}`)

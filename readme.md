@@ -78,6 +78,10 @@ Move blogpost middlware to middleware file and export
 ## Refactor routes
 Add controller folder and refactor routes
 
+## Add Image upload
+Use Cloudinary to transform images into urls
+Install Multers, cloudinary & multer-storage-cloudinary
+Display images in a bootstrap carousel on show page
 
 
 

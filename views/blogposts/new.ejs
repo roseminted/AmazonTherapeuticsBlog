@@ -1,10 +1,11 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="col-8 offset-2 form-group">
+<div class="col-8 offset-2">
     <div class="header text-center">
         <h1 class="mb-3">Create A Post</h1>
     </div>
-    <form class="newPostForm mb-5 needs-validation" action="/blogposts" method="POST" novalidate>
+    <form class=" createPostForm mb-5 needs-validation" action="/blogposts" method="POST" novalidate
+        enctype="multipart/form-data">
         <!-- <div class="row">
             <div class="col-sm-2">
                 <label for="fullname">Name</label>
@@ -32,7 +33,7 @@
         </div> -->
         <div class="row">
             <div class="col-sm-2">
-                <label for="postTitle">Title</label>
+                <label class="form-label" for="postTitle">Title</label>
             </div>
             <div class="col">
                 <input type="text" class="form-control" name="blogpost[title]" id="postTitle"
@@ -40,7 +41,7 @@
                 <small id="titlehelpblock" class="form-text text-muted mb-3">Blog Post Title</small>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-2">
                 <label for="postImage">Image</label>
             </div>
@@ -49,18 +50,29 @@
                     aria-describedby="imagehelpblock" required>
                 <small id="imagehelpblock" class="form-text text-muted mb-3">Link to Image</small>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-sm-2">
-                <label for="postBody">Text</label>
+                <label class="form-label" for="postBody">Text</label>
             </div>
             <div class="col">
                 <textarea class="form-control" name="blogpost[postText]" id="postBody" required></textarea>
                 <small id="textareahelpblock" class="form-text text-muted mb-3">Blog Post Text</small>
             </div>
         </div>
+        <div class="row mb-4">
+            <div class="col-sm-2">
+                <label class="form-label" for="image">Images</label>
+            </div>
+            <div class="form-file custom-file col-sm-10">
+                <input type="file" class="form-file-input" name="image" id="image" multiple>
+                <label class="form-file-label" for="image">
+                    <span class="form-file-text custom-file-label mx-3">Choose image(s)...</span>
+                    <span class="form-file-button">Browse</span>
+                </label>
+            </div>
+        </div>
         <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
     </form>
     <a href="/blogposts">Return to All Blogposts</a>
 </div>
-
