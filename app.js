@@ -19,13 +19,16 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 // insert User model
 const User = require('./models/user');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
 // require blogposts & user routes
 const blogpostsRoutes = require('./routes/blogposts');
 const usersRoutes = require('./routes/users');
-
+const MongoDBStore = require('connect-mongo')(session);
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/BlogApp';
 //APP CONFIG
 // configure mongoose
-mongoose.connect('mongodb://localhost:27017/BlogApp', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -51,14 +54,31 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true }));
 // use methodOverride for PUT and DELETE requests
 app.use(methodOverride('_method'));
+app.use(mongoSanitize());
+
+const secret = process.env.SECRET || 'thisissecret';
+
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("Session Store Error", e)
+})
 
 // configure session
 const sessionConfig = {
-    secret: 'thisissecret',
+    store,
+    name: 'session',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
+        // this says that this cookie will only work over https
+        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7,
     }
@@ -66,6 +86,46 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false }));
+
+// contentSecutiryPolicy from helmet
+const scriptSrcUrls = [
+    "https://kit.fontawesome.com/",
+    "https://code.jquery.com/",
+    "https://cdnjs.cloudflare.com/",
+    "https://cdn.jsdelivr.net",
+    "https://use.fontawesome.com/"
+];
+const styleSrcUrls = [
+    "https://cdn.jsdelivr.net",
+    "https://kit-free.fontawesome.com/",
+    "https://fonts.googleapis.com/",
+    "https://use.fontawesome.com/",
+];
+const fontSrcUrls = [
+    "https://kit-free.fontawesome.com/",
+    "https://use.fontawesome.com/"
+];
+app.use(
+    // configure helmet
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: [],
+            scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+            styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+            workerSrc: ["'self'", "blob:"],
+            objectSrc: [],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://res.cloudinary.com/dbwrcpfja/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+                "https://images.unsplash.com/",
+            ],
+            fontSrc: ["'self'", ...fontSrcUrls],
+        },
+    })
+);
 
 // configure passport
 app.use(passport.initialize());
@@ -76,6 +136,8 @@ passport.deserializeUser(User.deserializeUser());
 
 // global middleware for every template
 app.use((req, res, next) => {
+    // print query string
+    // console.log(req.query);
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');

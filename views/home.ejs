@@ -52,7 +52,12 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 thumbnail mb-3">
                     <a href="/<%=blogpost._id%>">
                         <div class="image">
-                            <img src="<%= blogpost.images[0].url %>" class="img-fluid">
+                            <% if(blogpost.images.length) { %>
+                            <img class="img-fluid" src="<%= blogpost.images[0].url %>" class="img-fluid">
+                            <% } else { %>
+                            <img class="img-fluid" alt=""
+                                src="https://images.unsplash.com/photo-1515030571781-d7106b1d91c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1402&q=80">
+                            <% } %>
                         </div>
                         <div class="title mt-2">
                             <h5 class="title"><%= blogpost.title %></h5>
@@ -62,7 +67,6 @@
                         </div>
                     </a>
                 </div>
-
                 <% } %>
             </div>
         </div>
