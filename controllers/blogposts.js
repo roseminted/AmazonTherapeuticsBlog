@@ -5,7 +5,7 @@ module.exports.index = async (req, res) => {
     // find all blogposts and save to blogposts variable
     const blogposts = await BlogPost.find({});
     // pass blogposts variable of all blogposts to the index template and render template
-    res.render('blogposts/index', { blogposts })
+    res.render('home', { blogposts })
     // console.log(blogposts);
 };
 
@@ -28,7 +28,7 @@ module.exports.createBlogpost = async (req, res, next) => {
     // flash success message
     req.flash('success', 'Sucessfully created a new blogpost!');
     // redirect to the new blogposts show page
-    res.redirect(`/blogposts/${blogpost._id}`)
+    res.redirect(`/${blogpost._id}`)
 }
 
 module.exports.showBlogpost = async (req, res) => {
@@ -37,7 +37,7 @@ module.exports.showBlogpost = async (req, res) => {
     // if error in finding blogpost, handle error and display message
     if (!blogpost) {
         req.flash('error', 'Cannot find that blogpost');
-        return res.redirect('/blogposts')
+        return res.redirect('/home')
     }
     // pass blogpost variable of the blogpost matching the ID to the show template and render template
     res.render('blogposts/show', { blogpost })
@@ -48,7 +48,7 @@ module.exports.renderEditForm = async (req, res) => {
     // if error in finding blogpost, handle error and display message
     if (!blogpost) {
         req.flash('error', 'Cannot find that blogpost');
-        return res.redirect('/blogposts')
+        return res.redirect('/')
     }
     res.render('blogposts/edit', { blogpost });
 }
@@ -68,11 +68,11 @@ module.exports.editBlogpost = async (req, res) => {
             await cloudinary.uploader.destroy(filename);
         }
         await blogpost.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
-        console.log(blogpost);
+        // console.log(blogpost);
     }
     // flash success message
     req.flash('success', 'Sucessfully updated your blogpost!');
-    res.redirect(`/blogposts/${blogpost._id}`)
+    res.redirect(`/${blogpost._id}`)
 }
 
 module.exports.deleteBlogpost = async (req, res) => {
@@ -80,5 +80,5 @@ module.exports.deleteBlogpost = async (req, res) => {
     await BlogPost.findByIdAndDelete(id);
     // flash success message
     req.flash('success', 'Sucessfully deleted your blogpost!');
-    res.redirect('/blogposts');
+    res.redirect('/');
 }

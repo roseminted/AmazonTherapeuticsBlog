@@ -30,16 +30,16 @@ const seedDB = async () => {
             postText: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.Ullam repudiandae quae recusandae sequi quia rem corporis quisquam, repellat alias fugiat veritatis consequuntur dolore tempore saepe quas accusantium tempora id natus.',
             images: [
                 {
-                    url: 'https://res.cloudinary.com/dbwrcpfja/image/upload/v1605721952/AmazonTheraputicsBlog/xridm8pwc8yrauwn1bwf.jpg',
-                    filename: 'AmazonTheraputicsBlog/xridm8pwc8yrauwn1bwf'
+                    url: 'https://res.cloudinary.com/dbwrcpfja/image/upload/v1605721952/AmazonTheraputicsBlog/akjgipg3bbibuwanzeiv.jpg',
+                    filename: 'AmazonTheraputicsBlog/akjgipg3bbibuwanzeiv'
                 },
                 {
-                    url: 'https://res.cloudinary.com/dbwrcpfja/image/upload/v1605721953/AmazonTheraputicsBlog/bxs2jpbitrufqavyddgh.jpg',
-                    filename: 'AmazonTheraputicsBlog/bxs2jpbitrufqavyddgh'
+                    url: 'https://res.cloudinary.com/dbwrcpfja/image/upload/v1605721953/AmazonTheraputicsBlog/r2ck0irup63x0ii8jrif.jpg',
+                    filename: 'AmazonTheraputicsBlog/r2ck0irup63x0ii8jrif'
                 },
                 {
-                    url: 'https://res.cloudinary.com/dbwrcpfja/image/upload/v1605721953/AmazonTheraputicsBlog/xudgx8vpnnahcvj8ssfg.jpg',
-                    filename: 'AmazonTheraputicsBlog/xudgx8vpnnahcvj8ssfg'
+                    url: 'https://res.cloudinary.com/dbwrcpfja/image/upload/v1605721953/AmazonTheraputicsBlog/iuyufxjm9kekupabszqd',
+                    filename: 'AmazonTheraputicsBlog/iuyufxjm9kekupabszqd'
                 }
             ]
         })

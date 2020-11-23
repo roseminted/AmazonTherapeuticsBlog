@@ -1,0 +1,56 @@
+body {
+    background-color: #f1f1f1;
+}
+
+section {
+    padding-top: 5%;
+}
+
+main {
+    padding: 15%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), 
+    url("https://images.unsplash.com/photo-1564427914085-9f8d762acc61?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGdyZWVufGVufDB8MHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.mainText {
+    color: white;
+}
+
+.navbar .navbar-brand{
+    font-weight: 200;
+}
+
+.navbar .navbar-brand:hover {
+    color: #dbd969;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: #dbd969;
+}
+
+.navbar.scrolled{
+	background: #062e00;
+	transition: background 500ms;
+}
+
+.footer {
+    background-color: #062e00;
+}
+
+.col-lg-3 a {
+    text-decoration: none;
+    color: #2a5905;
+}
+
+/* .show {
+    background-color: #062e00;
+    opacity: 0.9;
+} */
+
+/* 
+text color: #062e00
+lighter text color: #2a5905
+highlight color: #dbd969 */

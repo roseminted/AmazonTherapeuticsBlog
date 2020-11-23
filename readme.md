@@ -83,6 +83,12 @@ Use Cloudinary to transform images into urls
 Install Multers, cloudinary & multer-storage-cloudinary
 Display images in a bootstrap carousel on show page
 
+## Clean up styles
+Restructure home and index pages
+Clean up form styles
+
+
+
 
 
 

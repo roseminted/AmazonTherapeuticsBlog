@@ -1,17 +1,22 @@
 module.exports.plantNames = [
-    'Chamomile',
-    'Cinquefoil',
-    'Feverfew',
-    'Foxglove',
-    'Golden Rod',
-    'Lavender',
-    'Lovage',
-    'Poppy',
-    'Primrose',
-    'Rosemary',
-    'Sage',
-    'Vervain',
-    'Yarrow',
+    'Uña de Gato',
+    'Cinchona',
+    'Sangre de Grado',
+    'Tayuya',
+    'Wasai',
+    'Lapacho',
+    'Cordoncillo',
+    'Tawari',
+    'Sodo',
+    'Pusangade Motelo',
+    'Canellila',
+    'Cola de raton',
+    'Shapumvilla',
+    'Brazilian Ginseng',
+    'Ayahuasca',
+    'Achiote',
+    'Sanipanga',
+    'Matico'
 ]
 
 module.exports.descriptors = [
@@ -21,6 +26,6 @@ module.exports.descriptors = [
     'Flower',
     'Fruit',
     'Cloves',
-    'Rhizome',
+    'Tree Bark',
     'Seeds'
 ]

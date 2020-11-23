@@ -12,6 +12,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     }
     next();
 }
+
 // joi checking for correct inputs for server-side validations for blogposts
 module.exports.validateBlogpost = (req, res, next) => {
     const { error } = blogpostSchema.validate(req.body);

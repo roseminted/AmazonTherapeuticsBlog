@@ -1,7 +1,35 @@
+body {
+    background-color: #f1f1f1;
+}
+
 main {
     padding-top: 5%;
 }
 
 .form-file-input {
     display: none;
+}
+
+body .footer {
+    background-color: #062e00;
+}
+
+body .navbar {
+    background: #062e00;
+}
+
+.navbar .navbar-brand:hover {
+    color: #dbd969;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: #dbd969;
+}
+
+.navbar .navbar-brand{
+    font-weight: 200;
+}
+
+.card-header{
+    font-size: 2rem;
 }

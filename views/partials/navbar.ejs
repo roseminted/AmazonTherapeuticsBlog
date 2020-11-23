@@ -1,23 +1,22 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand navbarBrand" href="/blogposts"><i class="fas fa-leaf"></i> <strong>Amazon
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <a class="navbar-brand navbarBrand" href="/"><i class="fas fa-leaf"></i> <strong>Amazon
             Therapeutics</strong></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse" id="navbarText">
         <div class="navbar-nav ml-auto">
             <a class="nav-link" href="/">Home</a>
-            <a class="nav-link" href="/blogposts">Blog</a>
-            <a class="nav-link" href="/blogposts/new">Contribute</a>
+            <a class="nav-link" href="/new">Contribute</a>
             <a class="nav-link" href="/about">About</a>
             <a class="nav-link" href="/contact">Contact</a>
-            <% if(!currentUser) { %> 
+            <% if(!currentUser) { %>
             <a class="nav-link" href="/login">Login</a>
             <a class="nav-link" href="/register">Sign Up</a>
-            <% } else { %> 
+            <% } else { %>
             <a class="nav-link" href="/logout">Logout</a>
-            <% } %> 
+            <% } %>
         </div>
     </div>
 </nav>

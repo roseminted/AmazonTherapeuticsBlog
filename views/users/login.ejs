@@ -1,57 +1,59 @@
 <% layout('layouts/boilerplate') %>
 
-<div class="col-8 offset-2 form-group">
-    <div class="header text-center">
-        <h1 class="mb-3">Login</h1>
+<div class="col-8 offset-2 form-group my-5">
+    <div class="shadow-lg">
+        <div class="card-header text-center">
+            Login
+        </div>
+        <div class="card-body">
+            <form class="loginForm mb-3 needs-validation" action="/login" method="POST" novalidate>
+                <!-- <div class="row">
+                    <div class="col-sm-2">
+                        <label for="fullname">Name</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="blogpost[firstName]" id="fullname"
+                            aria-describedby="firstnamehelpblock" required>
+                        <small id="firstnamehelpblock" class="form-text text-muted mb-3">First Name</small>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="blogpost[lastName]" id="fullname"
+                            aria-describedby="lastnamehelpblock" required>
+                        <small id="lastnamehelpblock" class="form-text text-muted mb-3">Last Name</small>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="pt-1" for="username">Username</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" name="username" id="username"
+                            aria-describedby="usernamehelpblock" required>
+                        <small id="usernamehelpblock" class="form-text text-muted mb-3">Username</small>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-sm-2">
+                        <label for="emailaddress">Email</label>
+                    </div>
+                    <div class="col">
+                        <input type="email" class="form-control" id="emailaddress" name="email"
+                            aria-describedby="emailhelpblock" required>
+                        <small id="emailhelpblock" class="form-text text-muted mb-3">example@example.com</small>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="pt-1" for="password">Password</label>
+                    </div>
+                    <div class="col">
+                        <input type="password" class="form-control" name="password" id="password"
+                            aria-describedby="passwordhelpblock" required>
+                        <small id="passwordhelpblock" class="form-text text-muted mb-3">Password</small>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary btn-sm">Login</button>
+            </form>
+        </div>
     </div>
-    <form class="loginForm mb-5 needs-validation" action="/login" method="POST" novalidate>
-        <!-- <div class="row">
-            <div class="col-sm-2">
-                <label for="fullname">Name</label>
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" name="blogpost[firstName]" id="fullname"
-                    aria-describedby="firstnamehelpblock" required>
-                <small id="firstnamehelpblock" class="form-text text-muted mb-3">First Name</small>
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" name="blogpost[lastName]" id="fullname"
-                    aria-describedby="lastnamehelpblock" required>
-                <small id="lastnamehelpblock" class="form-text text-muted mb-3">Last Name</small>
-            </div>
-        </div> -->
-        <div class="row">
-            <div class="col-sm-2">
-                <label for="username">Username</label>
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" name="username" id="username"
-                    aria-describedby="usernamehelpblock" required>
-                <small id="usernamehelpblock" class="form-text text-muted mb-3">Username</small>
-            </div>
-        </div>
-        <!-- <div class="row">
-            <div class="col-sm-2">
-                <label for="emailaddress">Email</label>
-            </div>
-            <div class="col">
-                <input type="email" class="form-control" id="emailaddress" name="email"
-                    aria-describedby="emailhelpblock" required>
-                <small id="emailhelpblock" class="form-text text-muted mb-3">example@example.com</small>
-            </div>
-        </div> -->
-        <div class="row">
-            <div class="col-sm-2">
-                <label for="password">Password</label>
-            </div>
-            <div class="col">
-                <input type="password" class="form-control" name="password" id="password"
-                    aria-describedby="passwordhelpblock" required>
-                <small id="passwordhelpblock" class="form-text text-muted mb-3">Password</small>
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
-    </form>
-    <a href="/blogposts">Return to All Blogposts</a>
 </div>
