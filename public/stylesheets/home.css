@@ -1,6 +1,8 @@
 body {
     background-color: #f1f1f1;
+    color: #f1f1f1;
     font-family: "Verdana";
+    text-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 section {
@@ -8,16 +10,31 @@ section {
 }
 
 main {
+    display: flex;
     padding: 15%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), 
     url("https://images.unsplash.com/photo-1564427914085-9f8d762acc61?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzR8fGdyZWVufGVufDB8MHwwfA%3D%3D&auto=format&fit=crop&w=500&q=60");
     background-size: cover;
     background-position: center;
-    text-align: center;
+    position: relative;
 }
 
 .mainText {
-    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 605px) {
+    h1 {
+        display: none !important;
+    }
 }
 
 .navbar .navbar-brand{
@@ -46,6 +63,15 @@ main {
     color: #2a5905;
 }
 
+.fab {
+    color: #5f6a72;
+}
+
+footer a {
+    padding-right: 10px;
+}
+
+/* navbar background */
 /* .show {
     background-color: #062e00;
     opacity: 0.9;

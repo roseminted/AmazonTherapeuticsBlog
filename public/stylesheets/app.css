@@ -34,3 +34,11 @@ body .navbar {
 .card-header{
     font-size: 2rem;
 }
+
+.fab {
+    color: #5f6a72;
+}
+
+footer a {
+    padding-right: 10px;
+}
