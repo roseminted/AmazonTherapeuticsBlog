@@ -2,7 +2,6 @@ body {
     background-color: #f1f1f1;
     color: #f1f1f1;
     font-family: "Verdana";
-    text-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 section {
@@ -17,6 +16,7 @@ main {
     background-size: cover;
     background-position: center;
     position: relative;
+    text-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 .mainText {
@@ -64,7 +64,7 @@ main {
 }
 
 .fab {
-    color: #5f6a72;
+    color: #606a72;
 }
 
 footer a {

@@ -8,51 +8,16 @@
         <div class="card-body">
             <form class=" createPostForm mb-5 needs-validation" action="/" method="POST" novalidate
                 enctype="multipart/form-data">
-                <!-- <div class="row">
-                <div class="col-sm-2">
-                    <label for="fullname">Name</label>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" name="blogpost[firstName]" id="fullname"
-                        aria-describedby="firstnamehelpblock" required>
-                    <small id="firstnamehelpblock" class="form-text text-muted mb-3">First Name</small>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" name="blogpost[lastName]" id="fullname"
-                        aria-describedby="lastnamehelpblock" required>
-                    <small id="lastnamehelpblock" class="form-text text-muted mb-3">Last Name</small>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <label for="emailaddress">Email</label>
-                </div>
-                <div class="col">
-                    <input type="email" class="form-control" id="emailaddress" name="blogpost[email]"
-                        aria-describedby="emailhelpblock" required>
-                    <small id="emailhelpblock" class="form-text text-muted mb-3">example@example.com</small>
-                </div>
-            </div> -->
                 <div class="row">
                     <div class="col-sm-2">
                         <label class="form-label pt-1" for="postTitle">Title</label>
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" name="blogpost[title]" id="postTitle"
-                            aria-describedby="titlehelpblock" required>
+                            aria-describedby="titlehelpblock" autofocus required>
                         <small id="titlehelpblock" class="form-text text-muted mb-3">Blog Post Title</small>
                     </div>
                 </div>
-                <!-- <div class="row">
-                <div class="col-sm-2">
-                    <label for="postImage">Image</label>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" name="blogpost[image]" id="postImage"
-                        aria-describedby="imagehelpblock" required>
-                    <small id="imagehelpblock" class="form-text text-muted mb-3">Link to Image</small>
-                </div>
-            </div> -->
                 <div class="row">
                     <div class="col-sm-2">
                         <label class="form-label  pt-3" for="postBody">Text</label>
@@ -66,12 +31,9 @@
                     <div class="col-sm-2">
                         <label class="form-label pt-1" for="image">Images</label>
                     </div>
-                    <div class="form-file custom-file col-sm-10">
-                        <input type="file" class="form-file-input" name="image" id="image" multiple>
-                        <label class="form-file-label" for="image">
-                            <span class="form-file-text custom-file-label mx-3">Choose image(s)...</span>
-                            <span class="form-file-button">Browse</span>
-                        </label>
+                    <div class="custom-file col-sm-10">
+                        <input type="file" class="custom-file-input" name="image" id="image" multiple>
+                        <label class="custom-file-label mx-3 overflow-hidden" for="image">Choose image(s)...</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-outline-primary btn-sm">Submit</button>

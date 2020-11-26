@@ -24,7 +24,7 @@ module.exports.createBlogpost = async (req, res, next) => {
     // save the info to the database
     await blogpost.save();
     // check if images were saved properly on the blogpost
-    console.log(blogpost);
+    // console.log(blogpost);
     // flash success message
     req.flash('success', 'Sucessfully created a new blogpost!');
     // redirect to the new blogposts show page

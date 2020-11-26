@@ -7,10 +7,6 @@ main {
     padding-top: 5%;
 }
 
-.form-file-input {
-    display: none;
-}
-
 body .footer {
     background-color: #062e00;
 }
@@ -36,7 +32,7 @@ body .navbar {
 }
 
 .fab {
-    color: #5f6a72;
+    color: #606a72;
 }
 
 footer a {
