@@ -67,17 +67,10 @@ main {
     color: #606a72;
 }
 
+.fab:hover {
+    color: #dbd969;
+}
+
 footer a {
     padding-right: 10px;
 }
-
-/* navbar background */
-/* .show {
-    background-color: #062e00;
-    opacity: 0.9;
-} */
-
-/* 
-text color: #062e00
-lighter text color: #2a5905
-highlight color: #dbd969 */

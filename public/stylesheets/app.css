@@ -35,6 +35,10 @@ body .navbar {
     color: #606a72;
 }
 
+.fab:hover {
+    color: #dbd969;
+}
+
 footer a {
     padding-right: 10px;
 }
