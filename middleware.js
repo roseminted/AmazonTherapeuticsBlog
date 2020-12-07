@@ -1,11 +1,9 @@
 const BlogPost = require('./models/blogpost');
 const ExpressError = require('./utilities/ExpressError');
-// require joi schemas for validations
 const { blogpostSchema } = require('./schemas.js');
 
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
-        //save url user wants to go to in the sessio
         req.session.returnTo = req.originalUrl;
         req.flash('error', 'Please login. If you do not have an account, please sign up.');
         return res.redirect('/login')
@@ -13,7 +11,6 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 }
 
-// joi checking for correct inputs for server-side validations for blogposts
 module.exports.validateBlogpost = (req, res, next) => {
     const { error } = blogpostSchema.validate(req.body);
     if (error) {

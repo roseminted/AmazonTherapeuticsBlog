@@ -1,16 +1,12 @@
-// require mongoose
 const mongoose = require('mongoose');
-// connect seedHelpers plantNames & descriptors
 const { plantNames, descriptors } = require('./seedHelpers');
-// insert BlogPost model
 const BlogPost = require('../models/blogpost');
 
-// configure mongoose
 mongoose.connect('mongodb://localhost:27017/BlogApp', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
-}) // database error handling
+})
     .then(() => {
         console.log('Connected to DB!')
     })
@@ -18,7 +14,6 @@ mongoose.connect('mongodb://localhost:27017/BlogApp', {
         console.log(err.message)
     });
 
-// will save a random number under the sample variable to choose a title from the seedhelpers
 const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
